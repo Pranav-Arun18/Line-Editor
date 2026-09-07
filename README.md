@@ -1,257 +1,631 @@
-# Line-Editor
-A command-line line editor written in C that allows users to insert, delete, display, save, load, search, and count lines in a text document using a dynamic array of strings.
+# 📝 SIMPLE LINE EDITOR IN C
 
-Simple Line Editor in C
+Team Members:
+1.Pranav Arun.
+2.Nischith R Prakash.
+3.Preetham Gowda G
 
-Team Members
+### 🚀 A Lightweight Command-Line Text Editor Built with C
 
-Member 1: Pranav Arun
+**Insert • Delete • Search • Replace • Undo • Save • Load**
 
-Member 2: Nischith R Prakash
 
-Member 3: Preetham Gowda G
+## 📖 ABOUT THE PROJECT
 
-About the Project
+> **Simple Line Editor** is a command-line text editor developed using **C programming**.
 
-This project is a simple command-line line editor developed using C.
+The editor stores text **line by line** and allows users to create, view, modify, search, save, and load a small document directly from the terminal.
 
-The editor stores text line by line and allows the user to create, view and modify a small document through a terminal-based menu.
+The project uses a **2D character array** as its main data structure, making the implementation simple, efficient, and easy to understand.
 
-Data Structure Used
+```text
+        ┌──────────────────────────────┐
+        │      📝 LINE EDITOR          │
+        ├──────────────────────────────┤
+        │                              │
+        │  ✏️  Insert                  │
+        │  🗑️  Delete                  │
+        │  👀  Display                 │
+        │  💾  Save                    │
+        │  📂  Load                    │
+        │  🔎  Search                  │
+        │  🔄  Replace                 │
+        │  ↩️  Undo                    │
+        │  📊  Statistics              │
+        │                              │
+        └──────────────────────────────┘
+```
 
-The program uses a 2D character array to store the document.
+---
 
-char lines[MAX_LINES][MAX_LENGTH]; 
+# 🧠 DATA STRUCTURE
 
-The program also uses:
+The document is stored using a two-dimensional character array:
 
-int lineCount; 
+```c
+char lines[MAX_LINES][MAX_LENGTH];
+```
 
-to keep track of the number of lines currently stored.
+Each row represents one line of the document.
 
-For the Undo feature, another 2D character array is used to store the previous state of the document.
+The number of currently stored lines is maintained using:
 
-char oldLines[MAX_LINES][MAX_LENGTH]; 
+```c
+int lineCount;
+```
 
-Why did we choose a 2D array?
+For the Undo feature, another 2D array stores the previous document state:
 
-We chose a 2D character array because the problem is designed for a small text document and this approach is simple and easy to manage in C.
+```c
+char oldLines[MAX_LINES][MAX_LENGTH];
+```
 
-Advantages:
+### Example
 
-Simple to understand
+```text
+lines[0] → "Hello"
+lines[1] → "World"
+lines[2] → "C Programming"
+```
 
-Easy to implement
+This represents:
 
-Direct access to any line
+```text
+1. Hello
+2. World
+3. C Programming
+```
 
-No complicated pointer operations
+---
 
-Suitable for a small document
+# 💡 WHY A 2D ARRAY?
 
-Trade-off
+A 2D character array was chosen because the editor is designed for a **small text document**.
 
-The number of lines and the maximum length of each line are fixed.
+### Advantages
 
-Insertion and deletion in the middle also require shifting lines, so these operations take O(n) time.
+```text
+✓ Simple to understand
+✓ Easy to implement
+✓ Direct access to any line
+✓ Easy string manipulation
+✓ No complicated pointer operations
+✓ Suitable for small documents
+```
 
-For a small document, this is acceptable.
+### Trade-offs
 
-Features Implemented
+```text
+⚠ Maximum number of lines is fixed
+⚠ Maximum line length is fixed
+⚠ Insertion requires shifting lines
+⚠ Deletion requires shifting lines
+```
 
-Core Features
+For a small command-line editor, these limitations are acceptable.
 
-Insert a line
+---
 
-Delete a line
+# ✨ FEATURES
 
-Display the document
+## 🛠️ Core Features
 
-Bonus Features
+### 1. ✏️ Insert Line
 
-Save document to a .txt file
+Insert a new line at any valid position.
 
-Load document from a .txt file
+### 2. 🗑️ Delete Line
 
-Search for a word or phrase
+Delete a selected line from the document.
 
-Find and replace text
+### 3. 👀 Display Document
 
-Undo the most recent modification
+Display all currently stored lines with line numbers.
 
-Line count
+---
 
-Word count
+## 🚀 Additional Features
 
-Character count
+| Feature            | Description                                 |
+| ------------------ | ------------------------------------------- |
+| 💾 Save File       | Save the document to a `.txt` file          |
+| 📂 Load File       | Load a previously saved text file           |
+| 🔎 Search          | Search for a word or phrase                 |
+| 🔄 Find & Replace  | Replace matching text                       |
+| ↩️ Undo            | Undo the most recent supported modification |
+| 📊 Line Count      | Count the number of lines                   |
+| 🔤 Word Count      | Count the number of words                   |
+| 🔡 Character Count | Count the number of characters              |
+| ❓ Help             | Display instructions for using the editor   |
 
-Menu
+---
 
-The program provides the following options:
+# 🖥️ MENU
 
-1. Insert Line 2. Delete Line 3. Display Document 4. Save File 5. Load File 6. Search 7. Find and Replace 8. Undo 9. Line/Word Count 10. Help 11. Exit 
+```text
+╔══════════════════════════════════════════╗
+║          📝 SIMPLE LINE EDITOR           ║
+╠══════════════════════════════════════════╣
+║                                          ║
+║  1. ✏️  Insert Line                     ║
+║  2. 🗑️  Delete Line                      ║
+║  3. 👀  Display Document                ║
+║  4. 💾  Save File                       ║
+║  5. 📂  Load File                       ║
+║  6. 🔎  Search                           ║
+║  7. 🔄  Find and Replace                ║
+║  8. ↩️  Undo                             ║
+║  9. 📊  Line / Word Count              ║
+║ 10. ❓  Help                             ║
+║ 11. 🚪  Exit                             ║
+║                                          ║
+╚══════════════════════════════════════════╝
+```
 
-How to Compile
+---
 
-The project can be compiled using GCC.
+# 🎬 EXAMPLE
 
-gcc main.c -o line_editor 
+### Insert Line
 
-How to Run
+```text
+Enter choice: 1
 
-Windows
+Enter line number: 1
+Enter text: Hello World
 
-.\line_editor.exe 
+✓ Line inserted successfully.
+```
 
-Linux/macOS
+### Display Document
 
-./line_editor 
+```text
+Enter choice: 3
 
-Example
+──────────── DOCUMENT ────────────
 
-================================= SIMPLE LINE EDITOR ================================= 1. Insert Line 2. Delete Line 3. Display Document 4. Save File 5. Load File 6. Search 7. Find and Replace 8. Undo 9. Line/Word Count 10. Help 11. Exit Enter choice: 1 Enter line number: 1 Enter text: Hello World Line inserted successfully. 
+1. Hello World
 
-Displaying the document:
+──────────────────────────────────
+```
 
-Enter choice: 3 --- DOCUMENT --- 1. Hello World ---------------- 
+---
 
-Insert Example
+# 🔀 INSERT OPERATION
 
 Suppose the document contains:
 
-1. Hello 2. World 3. C Programming 
+```text
+1. Hello
+2. World
+3. C Programming
+```
 
-If the user inserts a new line at position 2:
+The user inserts a new line at position `2`.
 
-Enter line number: 2 Enter text: Simple Line Editor 
+```text
+Enter line number: 2
+Enter text: Simple Line Editor
+```
 
-The document becomes:
+The lines below the insertion point are shifted downward.
 
-1. Hello 2. Simple Line Editor 3. World 4. C Programming 
+```text
+BEFORE
 
-The lines below the insertion point are shifted down.
+1. Hello
+2. World
+3. C Programming
 
-Delete Example
+        ↓ INSERT
+
+AFTER
+
+1. Hello
+2. Simple Line Editor
+3. World
+4. C Programming
+```
+
+### Complexity
+
+```text
+Insert → O(n)
+```
+
+---
+
+# 🗑️ DELETE OPERATION
 
 Before deletion:
 
-1. Hello 2. Simple Line Editor 3. World 
+```text
+1. Hello
+2. Simple Line Editor
+3. World
+```
 
-If line 2 is deleted:
+Delete line `2`:
 
-1. Hello 2. World 
+```text
+Enter line number: 2
 
-The lines below the deleted line are shifted up.
+✓ Line deleted successfully.
+```
 
-Search
+After deletion:
 
-The search feature finds a word or phrase in the document and displays the line numbers containing it.
+```text
+1. Hello
+2. World
+```
 
-Example:
+The lines below the deleted line are shifted upward.
 
-Enter word or phrase to search: C Found at line 2: C Programming 
+### Complexity
 
-Find and Replace
+```text
+Delete → O(n)
+```
 
-The find and replace feature searches the document for text and allows the user to replace matching text.
+---
 
-Example:
+# 🔎 SEARCH
 
-Enter text to find: Hello Enter replacement text: Hi 
-
-The matching text is replaced in the selected line.
-
-Undo
-
-The Undo feature stores the previous document state before a modification.
-
-It can undo the most recent supported modification.
-
-Example:
-
-> Insert a new line Line inserted successfully. > Undo Last action undone. 
-
-The document returns to its previous state.
-
-Save and Load
-
-Save
-
-The current document can be saved into a text file.
+The Search feature finds a word or phrase and displays the line numbers where it occurs.
 
 Example:
 
-Enter file name: notes.txt Document saved successfully. 
+```text
+Enter word or phrase to search: C
 
-Load
+✓ Found at line 2: C Programming
+```
+
+If the text does not exist:
+
+```text
+✗ Text not found in the document.
+```
+
+### Complexity
+
+```text
+Search → O(n) approximately
+```
+
+---
+
+# 🔄 FIND AND REPLACE
+
+The editor can search for text and replace matching text.
+
+Example:
+
+```text
+Enter text to find: Hello
+Enter replacement text: Hi
+```
+
+Before:
+
+```text
+1. Hello World
+```
+
+After:
+
+```text
+1. Hi World
+```
+
+This feature uses C string manipulation techniques to locate and replace text.
+
+---
+
+# ↩️ UNDO
+
+The Undo feature stores the previous state of the document before a supported modification.
+
+```text
+Current Document
+       │
+       ▼
+Save Previous State
+       │
+       ▼
+Perform Modification
+       │
+       ▼
+     UNDO
+       │
+       ▼
+Restore Previous State
+```
+
+### Example
+
+```text
+Before:
+
+1. Hello
+2. World
+
+        ↓ Insert
+
+1. Hello
+2. C Programming
+3. World
+
+        ↓ Undo
+
+1. Hello
+2. World
+```
+
+The editor supports undoing the **most recent supported modification**.
+
+---
+
+# 💾 SAVE FILE
+
+The current document can be saved as a text file.
+
+```text
+Enter file name: notes.txt
+
+✓ Document saved successfully.
+```
+
+The document is written line by line into the specified `.txt` file.
+
+---
+
+# 📂 LOAD FILE
 
 A previously saved text file can be loaded into the editor.
 
-Example:
+```text
+Enter file name: notes.txt
 
-Enter file name: notes.txt Document loaded successfully. 
+✓ Document loaded successfully.
+```
 
 Loading a file replaces the current document.
 
-Document Statistics
+---
 
-The Count option displays:
+# 📊 DOCUMENT STATISTICS
 
-Number of lines
+The Count option displays the number of:
 
-Number of words
-
-Number of characters
+* Lines
+* Words
+* Characters
 
 Example:
 
---- DOCUMENT STATISTICS --- Lines : 3 Words : 8 Characters : 45 --------------------------- 
+```text
+╔══════════════════════════════════╗
+║       DOCUMENT STATISTICS        ║
+╠══════════════════════════════════╣
+║ Lines      : 3                   ║
+║ Words      : 8                   ║
+║ Characters : 45                  ║
+╚══════════════════════════════════╝
+```
 
-Error Handling
+---
+
+# 🛡️ ERROR HANDLING
 
 The program handles common errors such as:
 
-Invalid line numbers
+```text
+✓ Invalid line numbers
+✓ Invalid insertion position
+✓ Deleting from an empty document
+✓ Full document
+✓ Empty search text
+✓ File opening errors
+✓ Invalid menu choices
+✓ Text not found during search
+✓ Replacement text that is too long
+```
 
-Inserting outside the valid range
+Example:
 
-Deleting from an empty document
+```text
+Enter line number: 25
 
-Full document
+✗ Invalid line number.
+Please enter a valid position.
+```
 
-Empty search text
+---
 
-File opening errors
+# ⚡ COMPLEXITY ANALYSIS
 
-Invalid menu choices
+Let `n` represent the number of lines in the document.
 
-Searching for text that does not exist
+| Operation      |     Time Complexity |
+| -------------- | ------------------: |
+| Display        |                O(n) |
+| Insert         |                O(n) |
+| Delete         |                O(n) |
+| Search         |  O(n) approximately |
+| Find & Replace |  O(n) approximately |
+| Save           |                O(n) |
+| Load           |                O(n) |
+| Count          | O(total characters) |
+| Undo           |                O(n) |
 
-Replacement text that is too long
+Insertion and deletion take `O(n)` because lines may need to be shifted.
 
-Complexity
+---
 
-OperationComplexityDisplayO(n)InsertO(n)DeleteO(n)SearchO(n) approximatelyFind & ReplaceO(n) approximatelySaveO(n)LoadO(n)CountO(total characters)UndoO(n)
+# 📁 PROJECT STRUCTURE
 
-Here, n represents the number of lines in the document.
+```text
+simple-line-editor/
+│
+├── 📄 main.c
+├── 📘 README.md
+└── 📕 HELP.md
+```
 
-Project Structure
+### `main.c`
 
-simple-line-editor/ │ ├── main.c ├── README.md └── HELP.md 
+Contains the complete implementation of the line editor.
 
-Requirements
+### `README.md`
 
-C compiler
+Contains project documentation and usage information.
 
-GCC recommended
+### `HELP.md`
 
-Terminal/Command Prompt
+Contains detailed instructions for operating the editor.
 
-Course
+---
 
-Portfolio Building — Studio Course
-3rd Semester Coding Competition
+# ⚙️ REQUIREMENTS
 
-Conclusion
+```text
+C Compiler
+GCC Recommended
+Terminal / Command Prompt
+```
 
-The project demonstrates the implementation of a basic line-oriented text editor using fundamental C programming concepts such as arrays, strings, functions, file handling and basic data manipulation.
+---
+
+# 🚀 HOW TO COMPILE
+
+## Windows
+
+Compile:
+
+```bash
+gcc main.c -o line_editor
+```
+
+Run:
+
+```bash
+.\line_editor.exe
+```
+
+---
+
+## Linux / macOS
+
+Compile:
+
+```bash
+gcc main.c -o line_editor
+```
+
+Run:
+
+```bash
+./line_editor
+```
+
+---
+
+# 🧪 COMPLETE EXAMPLE
+
+```text
+=========================================
+        📝 SIMPLE LINE EDITOR
+=========================================
+
+1. Insert Line
+2. Delete Line
+3. Display Document
+4. Save File
+5. Load File
+6. Search
+7. Find and Replace
+8. Undo
+9. Line / Word Count
+10. Help
+11. Exit
+
+Enter choice: 1
+
+Enter line number: 1
+Enter text: Hello World
+
+✓ Line inserted successfully.
+
+
+Enter choice: 1
+
+Enter line number: 2
+Enter text: C Programming
+
+✓ Line inserted successfully.
+
+
+Enter choice: 3
+
+------------ DOCUMENT ------------
+
+1. Hello World
+2. C Programming
+
+----------------------------------
+
+
+Enter choice: 6
+
+Enter word or phrase to search: C
+
+✓ Found at line 2: C Programming
+
+
+Enter choice: 9
+
+--------- DOCUMENT STATISTICS ---------
+
+Lines      : 2
+Words      : 4
+Characters : 25
+
+----------------------------------------
+
+
+Enter choice: 11
+
+Thank you for using Simple Line Editor!
+```
+
+---
+
+# 📌 CONCLUSION
+
+**Simple Line Editor** is a command-line text editing application implemented using fundamental C programming concepts.
+
+The project combines:
+
+```text
+2D Arrays
+    +
+Strings
+    +
+Functions
+    +
+File Handling
+    +
+Searching
+    +
+Data Manipulation
+    +
+Undo Logic
+        ↓
+📝 SIMPLE LINE EDITOR
+```
+
+It provides a simple and practical way to understand how text can be stored and manipulated using arrays and string operations in C.
+
+---
